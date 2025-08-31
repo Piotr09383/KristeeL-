@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>KristeeL official website</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
-    <!-- Font Awesome do ikonek -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #e8f0fe; /* jasny motyw domyślny */
-            text-align: center;
-            padding: 60px 20px;
+            background: #e8f0fe;
             color: #333;
+            margin: 0;
+            padding: 60px 20px;
             transition: background 0.3s, color 0.3s;
         }
 
-        /* Dark mode */
         body.dark-mode {
             background: #121212;
             color: #f0f0f0;
@@ -26,24 +23,30 @@
         .title {
             font-weight: 900;
             font-size: 52px;
+            text-align: center;
             margin-bottom: 50px;
         }
 
         .main-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
             gap: 40px;
             max-width: 1000px;
             margin: auto;
+            align-items: flex-start;
+            flex-wrap: wrap;
         }
 
-        /* Wideo po lewej stronie */
+        .video-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         .video-container {
             position: relative;
             width: 400px;
-            padding-bottom: 225px; /* proporcje 16:9 */
+            padding-bottom: 225px;
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -58,7 +61,6 @@
             border: none;
         }
 
-        /* Sekcja linków po prawej */
         .links {
             display: flex;
             flex-direction: column;
@@ -79,6 +81,7 @@
             color: white;
             transition: transform 0.2s ease, opacity 0.2s ease, background 0.3s;
         }
+
         a:hover {
             transform: scale(1.05);
             opacity: 0.9;
@@ -92,7 +95,6 @@
         .tipo { background: #28a745; }
         .steam-donate { background: #2a475e; }
 
-        /* Tryb ciemny przyciski */
         body.dark-mode .tiktok { background: #333333; }
         body.dark-mode .x { background: #444444; }
 
@@ -101,6 +103,7 @@
             border: none;
             border-top: 2px solid rgba(0,0,0,0.1);
         }
+
         body.dark-mode hr {
             border-top: 2px solid rgba(255,255,255,0.2);
         }
@@ -111,7 +114,6 @@
             margin-bottom: 15px;
         }
 
-        /* Przycisk trybu */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -126,52 +128,38 @@
             z-index: 1000;
             transition: background 0.3s, color 0.3s;
         }
-        .theme-toggle:hover {
-            background: #555;
-        }
-        body.dark-mode .theme-toggle {
-            background: #f0f0f0;
-            color: #121212;
-        }
 
-        /* Responsywność */
-        @media(max-width: 900px){
-            .main-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .video-container, .links {
-                max-width: 100%;
-            }
+        .theme-toggle:hover { background: #555; }
+        body.dark-mode .theme-toggle { background: #f0f0f0; color: #121212; }
+
+        @media(max-width: 900px) {
+            .main-container { flex-direction: column; align-items: center; }
+            .video-column, .links { max-width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Przycisk trybu -->
     <button class="theme-toggle" onclick="toggleTheme()">🌙 Tryb ciemny</button>
-
     <div class="title">KristeeL</div>
 
     <div class="main-container">
-        <!-- Wideo 1 -->
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/r-dn5cuIBf8" 
-                    title="KristeeL Shorts 1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        <!-- Lewa kolumna z wideo -->
+        <div class="video-column">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/r-dn5cuIBf8" title="KristeeL Shorts 1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
-            </iframe>
+                </iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/W0ZDRQwchRw" title="KristeeL Shorts 2"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
 
-        <!-- Wideo 2 -->
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/W0ZDRQwchRw" 
-                    title="KristeeL Shorts 2" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
-        </div>
-
-        <!-- Linki po prawej -->
+        <!-- Prawa kolumna z linkami -->
         <div class="links">
             <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a class="tiktok" href="https://www.tiktok.com/@2kristeel2?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
@@ -191,14 +179,10 @@
         function toggleTheme() {
             const body = document.body;
             body.classList.toggle('dark-mode');
-
             const btn = document.querySelector('.theme-toggle');
-            if(body.classList.contains('dark-mode')){
-                btn.textContent = '☀️ Tryb jasny';
-            } else {
-                btn.textContent = '🌙 Tryb ciemny';
-            }
+            btn.textContent = body.classList.contains('dark-mode') ? '☀️ Tryb jasny' : '🌙 Tryb ciemny';
         }
     </script>
 </body>
 </html>
+
