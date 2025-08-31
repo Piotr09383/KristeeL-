@@ -53,13 +53,18 @@
             opacity: 0.9;
         }
 
+        /* Kolory przycisków */
         .yt { background: #FF0000; }
-        .tiktok { background: #000000; }
-        .x { background: #111; }
+        .tiktok { background: #1c1c1c; } /* jaśniejszy odcień czarnego */
+        .x { background: #222222; }      /* jaśniejszy odcień czerni */
         .kick { background: #53fc18; color: #111; }
         .discord { background: #5865F2; }
         .tipo { background: #28a745; }
         .steam-donate { background: #2a475e; }
+
+        /* Tryb ciemny dla przycisków */
+        body.dark-mode .tiktok { background: #333333; }
+        body.dark-mode .x { background: #444444; }
 
         hr {
             margin: 30px 0 15px 0;
