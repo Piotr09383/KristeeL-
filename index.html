@@ -8,16 +8,27 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #e8f0fe;
-            color: #333;
             margin: 0;
             padding: 60px 20px;
             transition: background 0.3s, color 0.3s;
+            color: #f0f0f0;
+            background: #121212; /* domyślny dark */
+        }
+
+        /* Tryby */
+        body.light-mode {
+            background: #e8f0fe;
+            color: #333;
         }
 
         body.dark-mode {
             background: #121212;
             color: #f0f0f0;
+        }
+
+        body.neon-mode {
+            background: #0c0c0c;
+            color: #39ff14; /* neonowa zieleń */
         }
 
         .title {
@@ -81,14 +92,12 @@
             font-size: 18px;
             font-weight: bold;
             color: white;
-            transition: transform 0.2s ease, opacity 0.2s ease, background 0.3s;
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.3s, color 0.3s;
         }
 
-        a:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
+        a:hover { transform: scale(1.05); opacity: 0.9; }
 
+        /* Kolory przycisków dla trybów */
         .yt { background: #FF0000; }
         .tiktok { background: #1c1c1c; }
         .x { background: #222222; }
@@ -97,24 +106,20 @@
         .tipo { background: #28a745; }
         .steam-donate { background: #2a475e; }
 
-        body.dark-mode .tiktok { background: #333333; }
-        body.dark-mode .x { background: #444444; }
+        /* Tryb neon - linki świecą neonem */
+        body.neon-mode a.yt { background: #ff073a; color: #fff; }
+        body.neon-mode a.tiktok { background: #ff00ff; color: #fff; }
+        body.neon-mode a.x { background: #00ffff; color: #000; }
+        body.neon-mode a.kick { background: #39ff14; color: #000; }
+        body.neon-mode a.discord { background: #ff00ff; color: #fff; }
+        body.neon-mode a.tipo { background: #ff1493; color: #fff; }
+        body.neon-mode a.steam-donate { background: #00ffff; color: #000; }
 
-        hr {
-            margin: 30px 0 15px 0;
-            border: none;
-            border-top: 2px solid rgba(0,0,0,0.1);
-        }
+        hr { margin: 30px 0 15px 0; border: none; border-top: 2px solid rgba(255,255,255,0.1); }
+        body.light-mode hr { border-top: 2px solid rgba(0,0,0,0.1); }
+        body.neon-mode hr { border-top: 2px solid #39ff14; }
 
-        body.dark-mode hr {
-            border-top: 2px solid rgba(255,255,255,0.2);
-        }
-
-        .donate-text {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
+        .donate-text { font-size: 16px; font-weight: 500; margin-bottom: 15px; }
 
         .theme-toggle {
             position: fixed;
@@ -132,7 +137,9 @@
         }
 
         .theme-toggle:hover { background: #555; }
+        body.light-mode .theme-toggle { background: #333; color: #fff; }
         body.dark-mode .theme-toggle { background: #f0f0f0; color: #121212; }
+        body.neon-mode .theme-toggle { background: #39ff14; color: #000; }
 
         @media(max-width: 900px) {
             .main-container { flex-direction: column; align-items: center; }
@@ -140,12 +147,12 @@
         }
     </style>
 </head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Tryb ciemny</button>
+<body class="dark-mode"> <!-- domyślny dark -->
+
+    <button class="theme-toggle" onclick="toggleTheme()">dark</button>
     <div class="title">KristeeL</div>
 
     <div class="main-container">
-        <!-- Lewa kolumna z wideo -->
         <div class="video-column">
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/r-dn5cuIBf8" title="KristeeL Shorts 1"
@@ -167,7 +174,6 @@
             </div>
         </div>
 
-        <!-- Prawa kolumna z linkami -->
         <div class="links">
             <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
             <a class="tiktok" href="https://www.tiktok.com/@2kristeel2?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
@@ -184,11 +190,15 @@
     </div>
 
     <script>
+        const modes = ['dark-mode', 'light-mode', 'neon-mode'];
+        const labels = { 'dark-mode':'dark', 'light-mode':'light', 'neon-mode':'neon' };
+        let current = 0;
+
         function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            const btn = document.querySelector('.theme-toggle');
-            btn.textContent = body.classList.contains('dark-mode') ? '☀️ Tryb jasny' : '🌙 Tryb ciemny';
+            document.body.classList.remove(...modes);
+            current = (current + 1) % modes.length;
+            document.body.classList.add(modes[current]);
+            document.querySelector('.theme-toggle').textContent = labels[modes[current]];
         }
     </script>
 </body>
