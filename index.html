@@ -24,17 +24,48 @@
         }
 
         .title {
-            font-weight: 900; /* mocne pogrubienie */
+            font-weight: 900;
             font-size: 52px;
             margin-bottom: 50px;
         }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Wideo po lewej stronie */
+        .video-container {
+            position: relative;
+            width: 400px;
+            padding-bottom: 225px; /* proporcje 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Sekcja linków po prawej */
         .links {
             display: flex;
             flex-direction: column;
             gap: 18px;
-            max-width: 400px;
-            margin: auto;
+            max-width: 300px;
         }
+
         a {
             display: flex;
             align-items: center;
@@ -53,16 +84,15 @@
             opacity: 0.9;
         }
 
-        /* Kolory przycisków */
         .yt { background: #FF0000; }
-        .tiktok { background: #1c1c1c; } /* jaśniejszy odcień czarnego */
-        .x { background: #222222; }      /* jaśniejszy odcień czerni */
+        .tiktok { background: #1c1c1c; }
+        .x { background: #222222; }
         .kick { background: #53fc18; color: #111; }
         .discord { background: #5865F2; }
         .tipo { background: #28a745; }
         .steam-donate { background: #2a475e; }
 
-        /* Tryb ciemny dla przycisków */
+        /* Tryb ciemny przyciski */
         body.dark-mode .tiktok { background: #333333; }
         body.dark-mode .x { background: #444444; }
 
@@ -103,6 +133,17 @@
             background: #f0f0f0;
             color: #121212;
         }
+
+        /* Responsywność */
+        @media(max-width: 900px){
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .video-container, .links {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -110,18 +151,31 @@
     <button class="theme-toggle" onclick="toggleTheme()">🌙 Tryb ciemny</button>
 
     <div class="title">KristeeL</div>
-    <div class="links">
-        <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a class="tiktok" href="https://www.tiktok.com/@2kristeel2?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a class="x" href="https://www.x.com/2KristeL2" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
-        <a class="kick" href="https://kick.com/2kristelowski2" target="_blank"><i class="fas fa-video"></i> Kick</a>
-        <a class="discord" href="https://discord.gg/4hAP6Td9tG" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-        
-        <hr>
-        <div class="donate-text">💖 Jeśli chcesz mnie wesprzeć, to poniżej znajdziesz opcje wysłania mi donate.</div>
-        
-        <a class="tipo" href="https://tipo.live/p/kristeel" target="_blank"><i class="fas fa-donate"></i> Donate (Tipo)</a>
-        <a class="steam-donate" href="https://steamcommunity.com/tradeoffer/new/?partner=1271327686&token=SJXEnMFR" target="_blank"><i class="fab fa-steam"></i> Donate Steam</a>
+
+    <div class="main-container">
+        <!-- Wideo po lewej -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/r-dn5cuIBf8" 
+                    title="KristeeL Shorts" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Linki po prawej -->
+        <div class="links">
+            <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a class="tiktok" href="https://www.tiktok.com/@2kristeel2?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a class="x" href="https://www.x.com/2KristeL2" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+            <a class="kick" href="https://kick.com/2kristelowski2" target="_blank"><i class="fas fa-video"></i> Kick</a>
+            <a class="discord" href="https://discord.gg/4hAP6Td9tG" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            
+            <hr>
+            <div class="donate-text">💖 Jeśli chcesz mnie wesprzeć, to poniżej znajdziesz opcje wysłania mi donate.</div>
+            
+            <a class="tipo" href="https://tipo.live/p/kristeel" target="_blank"><i class="fas fa-donate"></i> Donate (Tipo)</a>
+            <a class="steam-donate" href="https://steamcommunity.com/tradeoffer/new/?partner=1271327686&token=SJXEnMFR" target="_blank"><i class="fab fa-steam"></i> Donate Steam</a>
+        </div>
     </div>
 
     <script>
