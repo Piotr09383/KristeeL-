@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title> KristeeL official website </title>
+    <title>KristeeL official website</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <!-- Font Awesome do ikonek -->
@@ -10,16 +10,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #e8f0fe; /* jasne tło */
+            background: #e8f0fe; /* jasny motyw domyślny */
             text-align: center;
             padding: 60px 20px;
             color: #333;
+            transition: background 0.3s, color 0.3s;
         }
+
+        /* Dark mode */
+        body.dark-mode {
+            background: #121212;
+            color: #f0f0f0;
+        }
+
         .title {
             font-weight: 900; /* mocne pogrubienie */
             font-size: 52px;
             margin-bottom: 50px;
-            color: #222;
         }
         .links {
             display: flex;
@@ -39,12 +46,13 @@
             font-size: 18px;
             font-weight: bold;
             color: white;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.3s;
         }
         a:hover {
             transform: scale(1.05);
             opacity: 0.9;
         }
+
         .yt { background: #FF0000; }
         .tiktok { background: #000000; }
         .x { background: #111; }
@@ -58,15 +66,44 @@
             border: none;
             border-top: 2px solid rgba(0,0,0,0.1);
         }
+        body.dark-mode hr {
+            border-top: 2px solid rgba(255,255,255,0.2);
+        }
+
         .donate-text {
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 15px;
-            color: #444;
+        }
+
+        /* Przycisk trybu */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+            transition: background 0.3s, color 0.3s;
+        }
+        .theme-toggle:hover {
+            background: #555;
+        }
+        body.dark-mode .theme-toggle {
+            background: #f0f0f0;
+            color: #121212;
         }
     </style>
 </head>
 <body>
+    <!-- Przycisk trybu -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Tryb ciemny</button>
+
     <div class="title">KristeeL</div>
     <div class="links">
         <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
@@ -81,5 +118,19 @@
         <a class="tipo" href="https://tipo.live/p/kristeel" target="_blank"><i class="fas fa-donate"></i> Donate (Tipo)</a>
         <a class="steam-donate" href="https://steamcommunity.com/tradeoffer/new/?partner=1271327686&token=SJXEnMFR" target="_blank"><i class="fab fa-steam"></i> Donate Steam</a>
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            const btn = document.querySelector('.theme-toggle');
+            if(body.classList.contains('dark-mode')){
+                btn.textContent = '☀️ Tryb jasny';
+            } else {
+                btn.textContent = '🌙 Tryb ciemny';
+            }
+        }
+    </script>
 </body>
 </html>
