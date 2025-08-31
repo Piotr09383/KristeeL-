@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Linki KristeeL</title>
+    <!-- Font Awesome do ikonek -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298); /* nowe tło */
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             text-align: center;
             padding: 60px 20px;
             color: white;
         }
         .title {
             font-weight: bold;
-            font-size: 42px; /* większy napis */
+            font-size: 42px;
             margin-bottom: 50px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
         }
@@ -28,7 +30,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             padding: 14px 20px;
             border-radius: 12px;
             text-decoration: none;
@@ -49,18 +51,26 @@
         .discord { background: #5865F2; }
         .tipo { background: #28a745; }
         .steam-donate { background: #2a475e; }
+        hr {
+            margin: 30px 0;
+            border: none;
+            border-top: 2px solid rgba(255,255,255,0.4);
+        }
     </style>
 </head>
 <body>
     <div class="title">KristeeL</div>
     <div class="links">
-        <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank">▶️ YouTube</a>
-        <a class="tiktok" href="https://www.tiktok.com/@2kristel2_" target="_blank">🎵 TikTok</a>
-        <a class="x" href="https://www.x.com/2KristeL2" target="_blank">🐦 X (Twitter)</a>
-        <a class="kick" href="https://kick.com/2kristelowski" target="_blank">💚 Kick</a>
-        <a class="discord" href="https://discord.gg/4hAP6Td9tG" target="_blank">💬 Discord</a>
-        <a class="tipo" href="https://tipo.live/p/kristeel" target="_blank">💸 Donate (Tipo)</a>
-        <a class="steam-donate" href="https://steamcommunity.com/tradeoffer/new/?partner=1271327686&token=SJXEnMFR" target="_blank">🎮 Donate Steam</a>
+        <a class="yt" href="https://www.youtube.com/@2KristeeL2" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a class="tiktok" href="https://www.tiktok.com/@2kristel2_" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="x" href="https://www.x.com/2KristeL2" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+        <a class="kick" href="https://kick.com/2kristelowski" target="_blank"><i class="fas fa-video"></i> Kick</a>
+        <a class="discord" href="https://discord.gg/4hAP6Td9tG" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        
+        <hr>
+        
+        <a class="tipo" href="https://tipo.live/p/kristeel" target="_blank"><i class="fas fa-donate"></i> Donate (Tipo)</a>
+        <a class="steam-donate" href="https://steamcommunity.com/tradeoffer/new/?partner=1271327686&token=SJXEnMFR" target="_blank"><i class="fab fa-steam"></i> Donate Steam</a>
     </div>
 </body>
 </html>
